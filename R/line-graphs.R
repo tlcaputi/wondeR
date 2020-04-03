@@ -27,14 +27,15 @@ get_data <- function(
   MCD2 = c(NA),
   RUNNAME = "",
   replace = T,
-  by_vars = c("sex", "race", "hispanic"),
-  pypath = T
+  by_vars = c("sex", "race", "hispanic")
+  # ,
+  # pypath = T
 ){
 
-  if(pypath){
-    py <- system("where python", intern = T)
-    pypath <- gsub("\\\\", "/", py)
-  }
+  # if(pypath){
+  #   py <- system("where python", intern = T)
+  #   pypath <- gsub("\\\\", "/", py)
+  # }
 
   pyConnect(pypath)
   setwd(ROOTPATH)
