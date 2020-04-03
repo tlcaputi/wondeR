@@ -1,14 +1,28 @@
 Package: wondeR
-Title: What the Package Does (One Line, Title Case)
+Title: Pull, visualize, and analyze data from CDC Wonder Web Form
 Version: 0.0.0.9000
-Authors@R: 
-    person(given = "First",
-           family = "Last",
+Authors@R:
+    person(given = "Theodore",
+           family = "Caputi",
            role = c("aut", "cre"),
            email = "first.last@example.com",
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: What the package does (one paragraph).
-License: What license it uses
+License: No License
 Encoding: UTF-8
 LazyData: true
+Imports:
+  testit,
+  lubridate,
+  dplyr,
+  ggplot2,
+  ggthemes,
+  PythonInR
+Depends:
+  testit,
+  lubridate,
+  dplyr,
+  ggplot2,
+  ggthemes,
+  PythonInR
 RoxygenNote: 7.1.0.9000

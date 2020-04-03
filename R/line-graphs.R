@@ -140,7 +140,8 @@ wonder(
 
   if("state" %in% names(wonder)){
     wonder <- wonder %>% filter(state!="" & !is.na(state))
-    state_vars <- read.csv("./input/state_vars_clean.csv", header = T, stringsAsFactors = F)
+    state_vars <- load(statevars)
+    # state_vars <- read.csv("./input/state_vars_clean.csv", header = T, stringsAsFactors = F)
     state_vars <- state_vars %>% mutate_at(vars(aca_date), ymd)
     df <- merge(wonder, state_vars, by=c("state", "year"), all.x = T)
   } else{
@@ -211,7 +212,7 @@ plot_grid <- function(
     "T"
   ),
   grid_vars = c("sex", "race"),
-  ROOTPATH = "C:/Users/tcapu/Google Drive/PublicHealthStudies/wonderdd",
+  ROOTPATH = "",
   RUNNAME = "year_state_sex_race_firearms",
   save = T,
   out_fn = T,
@@ -225,6 +226,7 @@ plot_grid <- function(
   group_title = "",
   colpalette = "Dark2"
   ){
+
 
   if("race_rc" %in% names(df) & "race" %in% grid_vars) grid_vars <- gsub("race", "race_rc", grid_vars)
   assert(all(grid_vars %in% names(df)))
@@ -322,7 +324,10 @@ plot_grid <- function(
 
   if(is.character(colpalette)) p <- p + scale_color_brewer(palette=colpalette)
 
-  if(save) ggsave(out_fn, p, width = width, height = height)
+  if(save){
+    assert(dir.exists(ROOTPATH))
+    ggsave(out_fn, p, width = width, height = height)
+  }
 
   return(p)
 }
