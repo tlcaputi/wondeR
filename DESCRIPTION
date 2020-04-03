@@ -22,6 +22,5 @@ Depends:
   lubridate,
   dplyr,
   ggplot2,
-  ggthemes,
-  PythonInR
+  ggthemes
 RoxygenNote: 7.1.0.9000

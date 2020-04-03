@@ -27,9 +27,8 @@ get_data <- function(
   MCD2 = c(NA),
   RUNNAME = "",
   replace = T,
-  by_vars = c("sex", "race", "hispanic")
-  # ,
-  # pypath = T
+  by_vars = c("sex", "race", "hispanic"),
+  pypath = T
 ){
 
   # if(pypath){
