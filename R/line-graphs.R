@@ -67,7 +67,7 @@ else:
 
   pyExec(sprintf(
 '
-from wonder.pulldata import wonder
+from wonderpy.pulldata import wonder
 ROOTPATH = "{}".format("%s")
 wonder(
     MCD_ICD_10_CODE_1 = MCD1,
