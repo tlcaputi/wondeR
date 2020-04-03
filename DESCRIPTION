@@ -16,8 +16,7 @@ Imports:
   lubridate,
   dplyr,
   ggplot2,
-  ggthemes,
-  PythonInR
+  ggthemes
 Depends:
   testit,
   lubridate,
