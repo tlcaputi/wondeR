@@ -144,6 +144,8 @@ wonder(
     # state_vars <- read.csv("./input/state_vars_clean.csv", header = T, stringsAsFactors = F)
     state_vars <- state_vars %>% mutate_at(vars(aca_date), ymd)
     df <- merge(wonder, state_vars, by=c("state", "year"), all.x = T)
+
+    
   } else{
     df <- wonder
   }
