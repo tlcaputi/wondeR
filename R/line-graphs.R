@@ -70,8 +70,8 @@ else:
 from wonderpy.pulldata import wonder
 ROOTPATH = "{}".format("%s")
 wonder(
-    MCD_ICD_10_CODE_1 = MCD1,
-    MCD_ICD_10_CODE_2 = MCD2,
+    MCD_CAUSE_CODE_1 = MCD1,
+    MCD_CAUSE_CODE_2 = MCD2,
     RUN_NAME="{}".format("%s"),
     by_variables = by_vars.x,
     existing_file = False,
