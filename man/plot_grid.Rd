@@ -25,7 +25,8 @@ plot_grid(
   xlab = "Year",
   ylab = "Crude Rate\\n(Per 100k Deaths)",
   group_title = "",
-  colpalette = "Dark2"
+  colpalette = "Dark2",
+  include_data = T
 )
 }
 \arguments{

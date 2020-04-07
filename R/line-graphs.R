@@ -233,7 +233,8 @@ plot_grid <- function(
   xlab = "Year",
   ylab = "Crude Rate\n(Per 100k Deaths)",
   group_title = "",
-  colpalette = "Dark2"
+  colpalette = "Dark2",
+  include_data = T
   ){
 
 
@@ -310,6 +311,8 @@ plot_grid <- function(
   }
 
 
+  tmp <- tmp %>% filter_at(vars(all_of(grid_vars)), !is.na(.))
+
   p <- ggplot(tmp)
   if(length(groups) == 0) grp <- NULL
   p <- p + geom_line(aes(x = year, y=cr*100000, colour=grp))
@@ -339,5 +342,11 @@ plot_grid <- function(
     ggsave(out_fn, p, width = width, height = height)
   }
 
-  return(p)
+  if(include_data){
+    out <- list(p, df)
+  } else{
+    out <- p
+  }
+
+  return(out)
 }
