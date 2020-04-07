@@ -5,14 +5,15 @@ library(roxygen2)
 
 if(grepl("w32", R.Version()$platform)){
   ROOTPATH <- "C:/Users/tcapu/Google Drive/modules/"
-} else{
+  } else{
   ROOTPATH <- "/media/sf_Google_Drive/modules/"
 }
 
 setwd(ROOTPATH)
-create("wondeR")
+create_package("wondeR")
 
 setwd("./wondeR")
+devtools::load_all()
 document()
 
 print("Documentation process successful.")

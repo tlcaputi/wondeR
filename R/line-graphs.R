@@ -7,7 +7,7 @@
 #' @param replace Default True, if False or if the data file does not exist it will pull data
 #' @param by_vars Segment the data by sex, race, hispanic, and/or state. Year is always included.
 #' @param pypath Defaults to where python in CMD. You can also set the path to your Python 3 EXE file
-#' @keywords
+#' @keywords pull
 #' @export
 #' @examples
 #' df <- get_data(
@@ -145,7 +145,7 @@ wonder(
     state_vars <- state_vars %>% mutate_at(vars(aca_date), ymd)
     df <- merge(wonder, state_vars, by=c("state", "year"), all.x = T)
 
-    
+
   } else{
     df <- wonder
   }
@@ -176,7 +176,7 @@ wonder(
 #' @param xlab X axis label, Default Year
 #' @param ylab Y axis label, default Crude Rate Per 100,000
 #' @param colpalette ggplot2 colortheme
-#' @keywords
+#' @keywords plot
 #' @export
 #' @examples
 #' plot_grid(

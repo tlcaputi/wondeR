@@ -13,7 +13,7 @@ plot_grid(
   group_conditions = c("is.na(aca_date) | year(aca_date) > maxwonderyear",
     "year(aca_date) == 2014", "T"),
   grid_vars = c("sex", "race"),
-  ROOTPATH = "C:/Users/tcapu/Google Drive/PublicHealthStudies/wonderdd",
+  ROOTPATH = "",
   RUNNAME = "year_state_sex_race_firearms",
   save = T,
   out_fn = T,
@@ -89,3 +89,4 @@ plot_grid(
   colpalette="Dark2"
 )
 }
+\keyword{plot}
