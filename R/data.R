@@ -2,7 +2,7 @@
 #'
 #' @docType data
 #'
-#' @usage data(grav)
+#' @usage data(statevars)
 #'
 #' @format Year by state dataset with several variables
 "statevars"
