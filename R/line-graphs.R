@@ -28,7 +28,7 @@ get_data <- function(
   RUNNAME = "",
   replace = T,
   by_vars = c("sex", "race", "hispanic"),
-  pypath = T
+  pypath = "/path/to/python.exe"
 ){
 
   # if(pypath){
@@ -36,16 +36,16 @@ get_data <- function(
   #   pypath <- gsub("\\\\", "/", py)
   # }
 
-  pyConnect(pypath)
   setwd(ROOTPATH)
   assert(dir.exists(ROOTPATH))
   inp_fn <- sprintf("%s/input/%s_pull.csv", ROOTPATH, RUNNAME)
 
-
-  MCD1 <- expand_codes(MCD1)
-  MCD2 <- expand_codes(MCD2)
-
   if(!file.exists(inp_fn) | replace){
+
+    pyConnect(pypath)
+    MCD1 <- expand_codes(MCD1)
+    MCD2 <- expand_codes(MCD2)
+
 
     # by_vars <- unique(c("year", "state", by_vars))
     by_vars <- unique(c("year", by_vars))
@@ -205,7 +205,6 @@ wonder(
 #' )
 
 
-
 plot_grid <- function(
   df,
   minwonderyear = 1999,
@@ -253,6 +252,8 @@ plot_grid <- function(
             filter(num_obs==max(.$num_obs, na.rm = T))
   }
 
+  tmp <- df
+
 
   if(length(groups) != 0){
 
@@ -260,13 +261,12 @@ plot_grid <- function(
 
       txt <- "case_when("
       for(i in 1:length(groups)){
-        tmp <- sprintf("%s ~ '%s',", group_conditions[i], groups[i])
-        txt <- paste0(txt, tmp)
+        ob <- sprintf("%s ~ '%s',", group_conditions[i], groups[i])
+        txt <- paste0(txt, ob)
       }
       txt <- paste0(txt, ")")
 
-      tmp <- df %>% mutate(grp = eval(parse(text=txt)))
-
+      tmp <- tmp %>% mutate(grp = eval(parse(text=txt)))
 
       tmp <- tmp %>%
                 group_by(grp) %>%
@@ -301,7 +301,7 @@ plot_grid <- function(
 
     gbyvars <- c("year", grid_vars)
 
-    tmp <- df %>%
+    tmp <- tmp %>%
             filter(!is.na(deaths) & !is.na(pop)) %>%
             group_by_at(vars(all_of(gbyvars))) %>%
             summarise(
@@ -311,7 +311,7 @@ plot_grid <- function(
   }
 
 
-  tmp <- tmp %>% filter_at(vars(all_of(grid_vars)), !is.na(.))
+  tmp <- tmp %>% filter_at(vars(grid_vars), any_vars(!is.na(.)))
 
   p <- ggplot(tmp)
   if(length(groups) == 0) grp <- NULL

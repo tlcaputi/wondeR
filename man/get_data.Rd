@@ -11,7 +11,7 @@ get_data(
   RUNNAME = "",
   replace = T,
   by_vars = c("sex", "race", "hispanic"),
-  pypath = T
+  pypath = "/path/to/python.exe"
 )
 }
 \arguments{

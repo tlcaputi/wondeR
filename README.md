@@ -42,37 +42,39 @@ The first step is to collect data. This implements the [wonderpy package for Pyt
 ```{r}
 library(wondeR)
 
+
 df <- get_data(
   ROOTPATH = "/path/to/root", # this should include an "input" and "output" subdirectory
-  RUNNAME = "opioids", # Name of the run
+  RUNNAME = "sex_race_overdose", # Name of the run
   replace = T, # Default True, if False then this will not collect data
   pypath = "/path/to/python.exe", # Path to your python3.exe file (see above)
 
   ## Collect data on deaths that include these ICD10 codes
-  MCD1 = c("A20-A24", "A60"), ## Any of these codes...
-  MCD2 = c(NA), ## AND any of these codes. Defaults to c(NA), which is All death codes
+  MCD1 = c("T36-T50"), ## Any of these codes...
+  MCD2 = c("X40-X44", "X60-X64", "X85", "Y10-Y14"), ## AND any of these codes. Defaults to c(NA), which is All death codes
 
   ## Segment the data based upon these variables
-  by_vars = c("sex", "race", "hispanic") # can be sex, age, race, hispanic, state
+  by_vars = c("state", "sex", "race") # can be sex, age, race, hispanic, state
 )
 
 ```
 
 Note that you can use code ranges in the `MCD1` or `MCD2` arguments.
 
-If you want to collect the data yourself or using the wonderpy package within Python, you can make the `replace` argument `False` and ensure the data file matches the RUNNAME argument in your input subdirectory. You should still run the data through `get_data` before moving onto future functions.
+If you want to collect the data yourself or using the wonderpy package within Python, you can make the `replace` argument `False` and ensure the data file matches the format of RUNNAME + "_pull.csv" in your input subdirectory. In this case, you'd want to make sure that "ROOTPATH/input//opioids_pull.csv" exists. You should still run the data through `get_data` before moving onto future functions.
 
 
-You can use this data to create line plots using the `plot_grid` function.
+Combine this data with the `plot_grid` function to create line plots.
 
 
 ```{r}
+
 out <- plot_grid(
   df, # Data frame from get_data
 
   ## Should be same as above
-  ROOTPATH = "path/to/root",
-  RUNNAME = "opioids",
+  ROOTPATH = "C:/Users/tcapu/Google Drive/modules/wondeR/READMEcode",
+  RUNNAME = "sex_race_overdose",
 
   ## Convenience arguments
   minwonderyear = 1999, # Min year that WONDER collects
@@ -81,23 +83,23 @@ out <- plot_grid(
   ## Multiple Lines within the Same Plot
   # Create the names for the groups that you want
   groups = c(
-    sprintf("No Expansion Before %s", maxwonderyear),
+    "No Expansion Before 2019",
     "Expanded in 2014",
-    sprintf("Expanded Between 2015 and %s", maxwonderyear)
+    "Expanded Between 2015 and 2018"
   ),
 
   # Write the conditions for those groups as strings
   group_conditions = c(
-    "is.na(aca_date) | year(aca_date) > maxwonderyear",
+    "is.na(aca_date) | year(aca_date) > 2018",
     "year(aca_date) == 2014",
     "T"
   ),
 
   # Legend Title for the Groups
-  group_title = "",
+  group_title = "Medicaid",
 
   # Will add n= values to the group labels
-  include_n = F,
+  include_n = T,
 
   # If True, will only include data from state-years with data for all groups
   listwise = F,
@@ -121,8 +123,7 @@ out <- plot_grid(
 
   ## Do you want to return the data or just the plot?
   include_data = T
-  )
-
+)
 ```
 
 
@@ -131,4 +132,9 @@ If you set `include_data = T`, the resulting plot (a ggplot) will be the first i
 
 ```{r}
 p <- out[[1]]
+ggsave("./output/Fig1.png", p, width = 10, height = 7)
+
 ```
+
+
+![drug-overdoses-sex-race](READMEcode/output/Fig1.png)
