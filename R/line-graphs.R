@@ -54,8 +54,8 @@ get_data <- function(
     pySet("MCD1", MCD1)
     pySet("MCD2", MCD2)
 
-    pyExec("print('MCD1 is '.format(MCD1))")
-    pyExec("print('MCD2 is '.format(MCD2))")
+    # pyExec("print('MCD1 is {}'.format(MCD1))")
+    # pyExec("print('MCD2 is {}'.format(MCD2))")
 
   pyExec(
 "
