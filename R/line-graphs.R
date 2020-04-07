@@ -343,7 +343,7 @@ plot_grid <- function(
   }
 
   if(include_data){
-    out <- list(p, df)
+    out <- list("plot"=p, "data"=df, "plotdf"=tmp)
   } else{
     out <- p
   }
