@@ -17,7 +17,7 @@ plot_grid(
   RUNNAME = "year_state_sex_race_firearms",
   save = T,
   out_fn = T,
-  listwise = T,
+  listwise = F,
   vline = T,
   include_n = F,
   width = 6,
