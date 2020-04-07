@@ -41,6 +41,10 @@ get_data <- function(
   assert(dir.exists(ROOTPATH))
   inp_fn <- sprintf("%s/input/%s_pull.csv", ROOTPATH, RUNNAME)
 
+
+  MCD1 <- expand_codes(MCD1)
+  MCD2 <- expand_codes(MCD2)
+  
   if(!file.exists(inp_fn) | replace){
 
     # by_vars <- unique(c("year", "state", by_vars))
@@ -84,8 +88,8 @@ wonder(
 
 
   wonder <- read.csv(inp_fn, header = T, stringsAsFactors = F)
-  names(wonder) <- gsub("Ten.Year.Age.Groups.Code", "agegcode", names(wonder))
-  names(wonder) <- gsub("Ten.Year.Age.Groups", "ageg", names(wonder))
+  names(wonder) <- gsub("Ten.Year.Age.Groups.Code", "agecode", names(wonder))
+  names(wonder) <- gsub("Ten.Year.Age.Groups", "age", names(wonder))
   names(wonder) <- gsub("Notes", "notes", names(wonder))
   names(wonder) <- gsub("Gender.Code", "sexcode", names(wonder))
   names(wonder) <- gsub("Gender", "sex", names(wonder))
