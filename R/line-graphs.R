@@ -248,8 +248,6 @@ plot_grid <- function(
 
   if(length(groups) != 0){
 
-    tmp <- df %>% mutate(grp = eval(parse(text=txt)))
-
     if("state" %in% names(df)){
 
       txt <- "case_when("
@@ -258,6 +256,9 @@ plot_grid <- function(
         txt <- paste0(txt, tmp)
       }
       txt <- paste0(txt, ")")
+
+      tmp <- df %>% mutate(grp = eval(parse(text=txt)))
+
 
       tmp <- tmp %>%
                 group_by(grp) %>%
