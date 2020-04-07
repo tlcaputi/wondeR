@@ -140,7 +140,7 @@ wonder(
 
   if("state" %in% names(wonder)){
     wonder <- wonder %>% filter(state!="" & !is.na(state))
-    state_vars <- load(statevars)
+    data(statevars)
     # state_vars <- read.csv("./input/state_vars_clean.csv", header = T, stringsAsFactors = F)
     state_vars <- state_vars %>% mutate_at(vars(aca_date), ymd)
     df <- merge(wonder, state_vars, by=c("state", "year"), all.x = T)
