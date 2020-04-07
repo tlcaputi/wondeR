@@ -44,7 +44,7 @@ get_data <- function(
 
   MCD1 <- expand_codes(MCD1)
   MCD2 <- expand_codes(MCD2)
-  
+
   if(!file.exists(inp_fn) | replace){
 
     # by_vars <- unique(c("year", "state", by_vars))
@@ -53,6 +53,9 @@ get_data <- function(
     pySet("by_vars", by_vars)
     pySet("MCD1", MCD1)
     pySet("MCD2", MCD2)
+
+    pyExec("print('MCD1 is '.format(MCD1))")
+    pyExec("print('MCD2 is '.format(MCD2))")
 
   pyExec(
 "

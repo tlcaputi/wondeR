@@ -22,7 +22,6 @@ expand_codes <- function(codes){
       } else{
         num_digits <- 0
       }
-      print(sprintf("num_digits is %s", num_digits))
       nums <- seq(as.numeric(numberrange[1]), as.numeric(numberrange[2]), by=1/(10^num_digits))
       expanded <- paste0(letterrange[1], format(nums, nsmall=num_digits))
       out <- c(out, expanded)
