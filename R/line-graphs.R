@@ -74,7 +74,7 @@ else:
 
   pyExec(sprintf(
 '
-from wonderpy.pulldata import wonder
+from cdcwonderpy.pulldata import wonder
 ROOTPATH = "{}".format("%s")
 wonder(
     MCD_CAUSE_CODE_1 = MCD1,
