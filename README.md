@@ -10,14 +10,14 @@ Before you can use the `get_data` function, you need to:
 
 1. Ensure that you have Python3 installed. You will need to locate your python.exe file. In Windows, you can run the following to figure out where that is:
 
-```
-$ where python
+```console
+where python
 ```
 
 2. Install the [wonderpy package for Python3](https://www.github.com/tlcaputi/wonderpy)
 
-```
-$ pip install wonderpy
+```console
+pip install https://github.com/tlcaputi/wonderpy.git#egg=wonderpy
 ```
 
 3. Install PythonInR in R
@@ -36,7 +36,7 @@ devtools::install_github('tlcaputi/wondeR')
 
 ## Usage
 
-The first step is to collect data. This implements the [wonderpy package for Python3](https://www.github.com/tlcaputi/wonderpy) within R.
+The first step is to collect data. This implements the [wonderpy package for Python3](https://www.github.com/tlcaputi/wonderpy) within R. For demonstration, we pull the data for [all drug overdoses](https://cdn.ymaws.com/www.cste.org/resource/resmgr/Injury/Analysis_of_data_on_drug_poi.pdf), which is all deaths that include at least one ICD10 code in T36-T50 AND at least one ICD 10 code in X40-X44, X60-X64, X85, or Y10-Y14.
 
 
 ```{r}
