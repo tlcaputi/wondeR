@@ -63,8 +63,7 @@ Note that you can use code ranges in the `MCD1` or `MCD2` arguments.
 
 If you want to collect the data yourself or using the wonderpy package within Python, you can make the `replace` argument `False` and ensure the data file matches the format of RUNNAME + "_pull.csv" in your input subdirectory. In this case, you'd want to make sure that "ROOTPATH/input//opioids_pull.csv" exists. You should still run the data through `get_data` before moving onto future functions.
 
-
-Combine this data with the `plot_grid` function to create line plots.
+Combine this data with the `plot_grid` function to create line plots. Here, we will look at how drug overdose deaths have changed by sex and by race (`grid_vars`), comparing states that expanded Medicaid under the Affordable Care Act against those that did not (`groups` and `group_conditions`).
 
 
 ```{r}

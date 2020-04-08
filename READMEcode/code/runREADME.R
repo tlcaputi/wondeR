@@ -4,7 +4,7 @@ library(wondeR)
 df <- get_data(
   ROOTPATH = "C:/Users/tcapu/Google Drive/modules/wondeR/READMEcode", # this should include an "input" and "output" subdirectory
   RUNNAME = "sex_race_overdose", # Name of the run
-  replace = T, # Default True, if False then this will not collect data
+  replace = F, # Default True, if False then this will not collect data
   pypath = "C:/Users/tcapu/AppData/Local/Programs/Python/Python38/python.exe", # Path to your python3.exe file (see above)
 
   ## Collect data on deaths that include these ICD10 codes
@@ -62,7 +62,7 @@ out <- plot_grid(
 
   ## Plot Arguments
   xlab = "Year",
-  ylab = "Crude Rate\n(Per 100k Deaths)",
+  ylab = "Crude Rate (Per 100k Deaths)",
   colpalette = "Dark2", # ggplot theme
   vline = T, # If logical, no vertical line. If numeric/date, a dotted vertical line
 
